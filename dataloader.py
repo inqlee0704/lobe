@@ -583,13 +583,13 @@ def prep_dataloader(c, k=None, df=None):
         valid_ds = SegDataset_Z(df_valid, valid_slices, mask_name=c.mask)
 
     else:
-        train_ds = SegDataset_Zmap(
+        train_ds = SegDataset(
             df_train,
             train_slices,
             mask_name=c.mask,
             augmentations=aug,
         )
-        valid_ds = SegDataset_Zmap(df_valid, valid_slices, mask_name=c.mask)
+        valid_ds = SegDataset(df_valid, valid_slices, mask_name=c.mask)
         # train_ds = SegDataset(
         #     df_train,
         #     train_slices,

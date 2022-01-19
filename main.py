@@ -39,8 +39,8 @@ warnings.filterwarnings("ignore", category=DeprecationWarning)
 
 def wandb_config():
     project = "lobe"
-    run_name = "UNet_zMap_n32"
-    debug = False
+    run_name = "UNet_zeropadding_n32"
+    debug = True
     if debug:
         project = "debug"
 
@@ -55,7 +55,7 @@ def wandb_config():
         # n_case = 0 to run all cases
         config.n_case = 32
 
-    config.save = True
+    config.save = False
     config.debug = debug
     config.data_path = os.getenv("VIDA_PATH")
     config.in_file = "ENV18PM_ProjSubjList_IN0_train_20211129.in"
@@ -78,12 +78,12 @@ def wandb_config():
     config.learning_rate = 0.0002
     # config.learning_rate = 0.0002
     # config.learning_rate = 0.0004
-    config.train_bs = 8
-    config.valid_bs = 16
+    config.train_bs = 16
+    config.valid_bs = 32
     config.num_c = 6
     config.aug = True
     config.Z = False
-    config.in_c = 2
+    config.in_c = 1
 
     return config
 
@@ -243,7 +243,7 @@ def main():
             # test_pred = eng.inference(test_img)
             # plt = show_images(test_img, test_pred, epoch)
 
-            test_pmap = eng.inference_pmap_multiC(test_img, n_class=config.num_c)
+            test_pmap = eng.inference_pmap(test_img, n_class=config.num_c)
             plt = plot_pmap(test_pmap, epoch)
             wandb.log(
                 {
