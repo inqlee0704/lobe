@@ -75,7 +75,7 @@ def wandb_config():
     config.loss = "Combo loss"
     config.combined_loss = True
 
-    config.learning_rate = 0.0004
+    config.learning_rate = 0.0002
     # config.learning_rate = 0.0002
     # config.learning_rate = 0.0004
     config.train_bs = 8
