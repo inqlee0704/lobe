@@ -127,7 +127,7 @@ def prep_test_img(multiC=False):
         # test_img = test_img[None, :]
     return test_img
 
-def plot_pmap(p_map, epoch, z=351):
+def plot_pmap(p_map, epoch, z=151):
     p_map = np.rot90(p_map,3,[0,1])
     fig, axs = plt.subplots(1,6, figsize=(18,12))
     im1 = axs[0].imshow(p_map[:,:,z,0])
