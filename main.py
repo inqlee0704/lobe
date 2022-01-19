@@ -97,7 +97,7 @@ def seed_everything(seed=42):
     torch.backends.cudnn.deterministic = True
     torch.backends.cudnn.benchmark = False
 
-def prep_test_img(multiC=True):
+def prep_test_img(multiC=False):
     # Test
     test_img_path = os.getenv("TEST_IMG_PATH")
     test_img, _ = load(test_img_path)
@@ -234,7 +234,7 @@ def main():
 
     # Train
     best_loss = np.inf
-    test_img = prep_test_img(multiC=True)
+    test_img = prep_test_img(multiC=False)
     wandb.watch(eng.model, log="all", log_freq=10)
     for epoch in range(config.epochs):
         if config.combined_loss:
